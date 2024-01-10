@@ -13,7 +13,7 @@ from typing import List, Tuple, Any
 
 from minigpt4.common.registry import registry
 
-tokenizer = AutoTokenizer.from_pretrained('/root/autodl-tmp/phi-new')
+tokenizer = AutoTokenizer.from_pretrained('/home/jiahua.wang/TinyGPT-V/phi-2')
 
 class SeparatorStyle(Enum):
     """Different separator style."""

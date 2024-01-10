@@ -5,7 +5,7 @@ model:
   bos_token_id: "###"
   low_resource: False
   prompt_template: '###Human: {} ###Assistant: '
-  ckpt: ''
+  ckpt: '/home/jiahua.wang/TinyGPT-V/models/TinyGPT-V_for_Stage3.pth'
   lora_r: 64
   lora_alpha: 16
 
