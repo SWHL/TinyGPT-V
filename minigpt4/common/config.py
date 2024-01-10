@@ -5,11 +5,12 @@
  For full license text, see the LICENSE_Lavis file in the repo root or https://opensource.org/licenses/BSD-3-Clause
 """
 
-import logging
 import json
+import logging
 from typing import Dict
 
 from omegaconf import OmegaConf
+
 from minigpt4.common.registry import registry
 
 
@@ -38,7 +39,11 @@ class Config:
 
         # Override the default configuration with user options.
         self.config = OmegaConf.merge(
-            runner_config, model_config, dataset_config,evaluation_dataset_config, user_config
+            runner_config,
+            model_config,
+            dataset_config,
+            evaluation_dataset_config,
+            user_config,
         )
 
     def _validate_runner_config(self, runner_config):
@@ -112,7 +117,6 @@ class Config:
 
         return dataset_config
 
-
     @staticmethod
     def build_evaluation_dataset_config(config):
         datasets = config.get("evaluation_datasets", None)
@@ -130,7 +134,11 @@ class Config:
                 # hierarchy override, customized config > default config
                 dataset_config = OmegaConf.merge(
                     dataset_config,
-                    {"evaluation_datasets": {dataset_name: config["evaluation_datasets"][dataset_name]}},
+                    {
+                        "evaluation_datasets": {
+                            dataset_name: config["evaluation_datasets"][dataset_name]
+                        }
+                    },
                 )
 
         return dataset_config
