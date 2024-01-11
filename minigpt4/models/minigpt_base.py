@@ -75,12 +75,14 @@ class MiniGPTBase(BaseModel):
         assert (
             len(prompt_segs) == len(img_list) + 1
         ), "Unmatched numbers of image placeholders and images."
+
         seg_tokens = [
             self.llama_tokenizer(seg, return_tensors="pt", add_special_tokens=i == 0)
             .to(device)
             .input_ids  # only add bos to the first seg
             for i, seg in enumerate(prompt_segs)
         ]
+
         seg_embs = [self.embed_tokens(seg_t) for seg_t in seg_tokens]
 
         mixed_embs = [emb for pair in zip(seg_embs[:-1], img_list) for emb in pair] + [

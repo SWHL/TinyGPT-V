@@ -85,7 +85,6 @@ class MiniGPT4(MiniGPTBase):
             4096, self.llama_model.config.hidden_size
         )
 
-
         if prompt_path:
             with open(prompt_path, 'r') as f:
                 raw_prompts = f.read().splitlines()

@@ -234,28 +234,11 @@ class Chat:
         thread.start()
         return streamer
 
-        generated = input_ids
-        for _ in range(max_length):
-            output = self.forward(input_ids=generated).logits
-            next_word_id = output[:, -1, :].argmax(1)
-            generated = torch.cat((generated, next_word_id.unsqueeze(-1)), dim=1)
-
     def model_generate(self, *args, **kwargs):
         # for 8 bit and 16 bit compatibility
         with self.model.maybe_autocast():
             output = self.model.llama_model.generate(*args, **kwargs)
         return output
-
-    # def model_generate(self, *args, **kwargs):
-    #     # for 8 bit and 16 bit compatibility
-
-    #     with self.model.maybe_autocast():
-    #         max_length=100
-    #         for _ in range(max_length):
-    #             output = self.model(**kwargs).logits
-    #             next_word_id = output[:, -1, :].argmax(1)
-    #             generated = torch.cat((generated, next_word_id.unsqueeze(-1)), dim=1)
-    #     return output
 
     def encode_img(self, img_list):
         image = img_list[0]
