@@ -206,7 +206,7 @@ class BaseModel(nn.Module):
                 layer.self_attn.q_layernorm.weight.requires_grad = True
                 layer.self_attn.k_layernorm.weight.requires_grad = True
                 layer.post_layernorm.weight.requires_grad = True
-                layer.input_layernorm.weight.requires_grad = True 
+                layer.input_layernorm.weight.requires_grad = True
 
             #     layer.self_attn.q_layernorm.weight.data = layer.self_attn.q_layernorm.weight.data.float()
             #     layer.self_attn.k_layernorm.weight.data = layer.self_attn.k_layernorm.weight.data.float()
@@ -230,7 +230,7 @@ class BaseModel(nn.Module):
         else:
             for name, param in llama_model.named_parameters():
                 param.requires_grad = False
-                
+
             # for i, layer in enumerate(llama_model.model.layers):
             #     # 如果层的索引小于5，则将该层的参数设置为可训练
             #     if i < 5:
@@ -244,7 +244,7 @@ class BaseModel(nn.Module):
                 layer.self_attn.q_layernorm.weight.requires_grad = True
                 layer.self_attn.k_layernorm.weight.requires_grad = True
                 layer.post_layernorm.weight.requires_grad = True
-                layer.input_layernorm.weight.requires_grad = True 
+                layer.input_layernorm.weight.requires_grad = True
 
                 layer.self_attn.q_layernorm.weight.data = layer.self_attn.q_layernorm.weight.data.float()
                 layer.self_attn.k_layernorm.weight.data = layer.self_attn.k_layernorm.weight.data.float()

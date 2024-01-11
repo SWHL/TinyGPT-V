@@ -77,6 +77,7 @@ class MiniGPT4(MiniGPTBase):
         else:
             img_f_dim = self.visual_encoder.num_features * 4
             print('Do not use Q-Former here.')
+
         print(img_f_dim,self.llama_model.config.hidden_size)
         self.llama_proj = nn.Linear(
             self.Qformer.config.hidden_size, 4096
@@ -134,6 +135,7 @@ class MiniGPT4(MiniGPTBase):
 
         with self.maybe_autocast():
             image_embeds = self.ln_vision(self.visual_encoder(image)).to(device)
+
             if self.has_qformer:
                 image_atts = torch.ones(image_embeds.size()[:-1], dtype=torch.long).to(device)
 

@@ -1,7 +1,9 @@
 #### QFormer作用？
+QFormer来自论文BCLI2工作中，用来弥补Frozen Image encoder和Frozen LLM之间的gap。
+基于Bert作为初始化的。
 
 
-#### 结构图
+#### 推理结构图
 ```mermaid
 flowchart LR
 
@@ -36,6 +38,7 @@ def get_context_emb(self, prompt, img_list):
 
     seg_embs = [self.embed_tokens(seg_t) for seg_t in seg_tokens]
 
+    # TODO: 这里具体如何混合在一起的，需要Debug查看
     mixed_embs = [emb for pair in zip(seg_embs[:-1], img_list) for emb in pair] + [
         seg_embs[-1]
     ]
